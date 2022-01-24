@@ -1,52 +1,19 @@
 class Solution {
 public:
     bool detectCapitalUse(string word) {
-        bool flag = false;
-        
-        //All chars are capital :
-        for(auto c : word){
+        int cap = 0;
+        int n = word.size();
+        if(n==1){
+            return true;
+        }
+        for(auto c:word){
             if(isupper(c)){
-                flag = true;
-            }
-            else{
-                flag = false;
-                break;
+                cap+=1;
             }
         }
-        if(flag==true){
+        if(cap==1 and isupper(word[0])){
             return true;
         }
-        
-        //first char only capital
-        for(int i=0;i<word.size();i++){
-            if(i==0 and isupper(word[0])){
-                flag = true;
-            }
-            else if(i>0 and islower(word[i])){
-                flag = true;
-            }
-            else{
-                flag = false;
-                break;
-            }
-        }
-        if(flag==true){
-            return true;
-        }
-        
-        //all chars are lowercase:
-        for(auto c : word){
-            if(islower(c)){
-                flag = true;
-            }
-            else{
-                flag = false;
-                break;
-            }
-        }
-        if(flag==true){
-            return true;
-        }
-        return false;
+        return cap==0 or cap==n;
     }
 };
