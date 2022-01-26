@@ -16,26 +16,14 @@ private:
         if(root==NULL){
             return;
         }
-        
-        if(root->left!=NULL){
-            ans.push_back(root->left->val);
-            helper(root->left,ans);    
-        }
-        if(root->right!=NULL){
-            ans.push_back(root->right->val);
-            helper(root->right,ans);
-        }
+        helper(root->left,ans);
+        ans.push_back(root->val);
+        helper(root->right,ans);
     }
 public:
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
         vector<int>ans;
-        if(root1!=NULL){
-            ans.push_back(root1->val);        
-        }
         helper(root1,ans);
-        if(root2!=NULL){
-            ans.push_back(root2->val);        
-        }
         helper(root2,ans);
         sort(ans.begin(),ans.end());
         return ans;
