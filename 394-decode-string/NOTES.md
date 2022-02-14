@@ -1,0 +1,2 @@
+- we will go to each chars of string
+- if we get digit we will repeat the part k times until we get closing bracket.
