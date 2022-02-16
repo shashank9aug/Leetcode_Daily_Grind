@@ -16,16 +16,12 @@ public:
             return head;
         }
         
-        ListNode*n1 = head;
-        ListNode*n2 = head->next;
-        ListNode*n3 = n2->next;
+        ListNode*temp = head;
+        temp = head->next;
         
-        n1->next = n3;
-        n2->next = n1;
+        head->next = swapPairs(head->next->next);
+        temp->next = head;
         
-        if(n1!=NULL){
-            n1->next = swapPairs(n3);
-        }
-        return n2;
+        return temp;
     }
 };
