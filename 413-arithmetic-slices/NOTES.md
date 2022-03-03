@@ -1,0 +1,8 @@
+- In Arithmetic progression :
+- series :  a , a+d, a+2d, a+3d, a+4d..............
+- so, corresponding element differece is same among all the series element.
+- A/q to question :
+- length of the series >=3
+- differece :  second - first == third-second
+- consecutive pair difference same
+-
