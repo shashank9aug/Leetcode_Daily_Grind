@@ -1,0 +1,3 @@
+- Their will be N! ways to arrange the delivery items for pickup.
+- for every corresponding delivery their will be (2*n -1) ways to deliver
+-
