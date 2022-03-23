@@ -21,8 +21,8 @@ public:
         for(auto p:prerequisites){
             adj[p[0]].push_back(p[1]);
         }
-        vector<int>vis(nCourse+1,0);
-        vector<int>dfsVis(nCourse+1,0);
+        vector<int>vis(nCourse,0);
+        vector<int>dfsVis(nCourse,0);
         for(int i=0;i<nCourse;i++){
             if(vis[i]==0){
                 if(isCycleDFS(i,adj,vis,dfsVis)==true){
