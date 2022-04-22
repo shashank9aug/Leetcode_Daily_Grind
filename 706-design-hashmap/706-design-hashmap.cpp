@@ -1,9 +1,8 @@
 class MyHashMap {
 public:
-    int hash[1000010];
-    
+    vector<int>hash;    
     MyHashMap() {
-        memset(hash, -1, sizeof hash);
+        hash.resize(1000010,-1);
     }
     
     void put(int key, int value) {
