@@ -1,39 +1,35 @@
 class Solution {
 public:
-    vector<string> ans;
-    unordered_map<char, string> m; 
-    // vector<string>m = {"","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"}; 
-    void backtrack(int p, string s, string d){
-        if(s.size()==d.size()){ 
-            ans.push_back(s);
-            return;
-        }
-        for(int i=p;i<d.size();i++){ 
-            char c=d[i];
-            cout<<c<<", ";
-            for(int j=0;j<m[c].size();j++){ 
-                char ch=m[c][j];
-                s.push_back(ch);
-                backtrack(i+1, s, d);
-                s.pop_back();
-            }
-        }
+    vector<string> letterCombinations(string digits) {
+        vector<string>res;
+        if(digits.empty()) return res;
+        vector<string>letter = {
+            "",
+            "",
+            "abc",
+            "def",
+            "ghi",
+            "jkl",
+            "mno",
+            "pqrs",
+            "tuv",
+            "wxyz"
+        };
+        
+        string path = "";
+        DFS(digits, 0, path, res, letter);
+        return res;
     }
     
-    vector<string> letterCombinations(string digits) {
-        string s="";
-        m['2']="abc"; 
-        m['3']="def";
-        m['4']="ghi";
-        m['5']="jkl";
-        m['6']="mno";
-        m['7']="pqrs";
-        m['8']="tuv";
-        m['9']="wxyz";
-        
-        if(digits.size()==0)
-            return ans;
-        backtrack(0, s, digits);
-        return ans;
+    void DFS(string digits, int pos, string& path, vector<string>& res, vector<string>& letter){
+        if(pos == digits.size()){
+            res.push_back(path);
+            return;
+        }
+        for(auto c: letter[digits[pos] - '0']){
+            path.push_back(c);
+            DFS(digits, pos + 1, path, res, letter);
+            path.pop_back();
+        }
     }
 };
