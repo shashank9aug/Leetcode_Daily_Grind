@@ -1,7 +1,7 @@
 class Solution {
 private:
-    void findCombination(vector<int>&arr,vector<int>&ds,vector<vector<int>>&ans,int target,int idx){
-        //Base case:
+    void combination(int idx,vector<int>&arr,int target,vector<vector<int>>&ans,vector<int>&ds){
+        //Base case :
         if(idx==arr.size()){
             if(target==0){
                 ans.push_back(ds);
@@ -9,22 +9,19 @@ private:
             return;
         }
         
-        //rec call
         //pick up the element : 
         if(arr[idx]<=target){
             ds.push_back(arr[idx]);
-            //we are picking up the same element many times according to question
-            findCombination(arr,ds,ans,target-arr[idx],idx);
+            combination(idx,arr,target-arr[idx],ans,ds);
             ds.pop_back();
         }
-        //not pickup the element
-        findCombination(arr,ds,ans,target,idx+1);
+        combination(idx+1,arr,target,ans,ds);        
     }
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>>ans;
         vector<int>ds;
-        findCombination(candidates,ds,ans,target,0);
+        combination(0,candidates,target,ans,ds);
         return ans;
     }
 };
