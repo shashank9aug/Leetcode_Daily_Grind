@@ -11,29 +11,25 @@
  */
 class Solution {
 public:
-    int height (TreeNode* root)
-    {
-        if (!root)
-            return 0;
-        return max(height(root->left), height(root->right)) + 1;
-    }
-    int sum = 0;
-    int add(TreeNode* root, int k,int h)
-    {
-        
-        if (!root)
-            return sum;
-        if (k == h)
-            sum = sum + root->val;
-        add(root->left, k + 1,h);
-        add(root->right, k + 1,h);
-        return sum;
-    }
-    
-    int deepestLeavesSum(TreeNode* root) 
-    {
-        int h = height(root);
-        int sum = add(root, 0,h-1);
-        return sum;
+    int deepestLeavesSum(TreeNode* root) {
+	    int sum = 0, n;
+	    queue<TreeNode*> q; // required for level-order traversal
+	    q.push(root);
+	    while(!q.empty()){
+            
+		    sum = 0;
+            n = size(q); // reset sum when deeper level is reached and accumulate for that level
+		    for(int i = 0; i < n; i++){
+			    auto top = q.front(); 
+                q.pop();
+                cout<<sum<<", ";
+			    sum += top -> val;  
+                
+			    if(top -> left) q.push(top -> left);
+			    if(top -> right) q.push(top -> right);
+		    }
+            cout<<"h"<<sum<<" ";
+	    }
+	    return sum;
     }
 };
