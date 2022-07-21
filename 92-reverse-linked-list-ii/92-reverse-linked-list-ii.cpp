@@ -11,19 +11,21 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        vector<int>rev;
-        ListNode*head2 = head;
-        while(head2!=NULL){
-            rev.push_back(head2->val);
-            head2=head2->next;
+       ListNode *dummy = new ListNode(0); // created dummy node
+        dummy->next = head;
+        ListNode *prev = dummy; 
+        // adjusting the prev pointer on it's actual index
+        for(int i = 0; i < left - 1; i++)
+            prev = prev->next; 
+        
+        ListNode *curr = prev->next; 
+        // reversing
+        for(int i = 0; i < right - left; i++){
+            ListNode *forw = curr->next; 
+            curr->next = forw->next;
+            forw->next = prev->next;
+            prev->next = forw;
         }
-        reverse(rev.begin()+left-1,rev.begin()+right);
-        int i=0;
-        head2=head;
-        for(int i=0;i<rev.size();i++){
-            head2->val = rev[i];
-            head2=head2->next;
-        }
-        return head;
+        return dummy->next;
     }
 };
